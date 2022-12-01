@@ -8,7 +8,7 @@ import {observer} from "mobx-react";
 interface Props{
     list: TodoType[];
     handleClickDelete:(id:number) => void;
-    handleClickComplete:(id:number) => void;
+    handleClickComplete:(item:TodoType) => void;
 }
 
 const TodoList = ({ list, handleClickDelete, handleClickComplete }:Props) => {
@@ -36,7 +36,7 @@ const TodoList = ({ list, handleClickDelete, handleClickComplete }:Props) => {
                                 <IconButton
                                     aria-label="complete"
                                     size="large"
-                                    onClick={() => handleClickComplete(item.id)}
+                                    onClick={() => handleClickComplete(item)}
                                     disabled={item.completed}
                                 >
                                     <CheckIcon />

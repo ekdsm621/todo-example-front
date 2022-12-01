@@ -1,5 +1,5 @@
 import {Box, Container} from "@mui/material";
-import {TodoForm, TodoList} from "./view";
+import {TodoForm, TodoList, TodoType} from "./view";
 import Api from "./api/Api";
 import {useCallback, useEffect} from "react";
 import {Store} from "./store/Store";
@@ -22,8 +22,9 @@ const TodoContainer = () => {
         api.delete(id).then(() => store.deleteListItem(id));
     }, []);
 
-    const handleClickComplete = useCallback((id:number) => {
-        api.complete(id).then(() => store.completeListItem(id));
+    const handleClickComplete = useCallback((item:TodoType) => {
+        item.completed = true;
+        api.complete(item).then(() => store.completeListItem(item.id));
     },[]);
 
     const handleAddData = useCallback((title:string, date:string) => {

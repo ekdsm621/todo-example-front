@@ -11,21 +11,32 @@ class Api {
         return Api._instance;
     }
 
-    async create(data:TodoType) {
-        await axios.post('http://localhost:8000/todo',data);
+    async create(item:TodoType) {
+        await axios({
+            url: 'http://localhost:8080/api/item',
+            method:'post',
+            data: item,
+        });
     }
 
     async getList () {
-        return axios.get('http://localhost:8000/todo?_sort=id&_order=asc');
+        return axios.get('http://localhost:8080/api/list');
     }
 
-    async complete(id:number) {
-        const data = { completed: true }
-        await axios.put('http://localhost:8000/todo/'+id, data);
+    async complete(item:TodoType) {
+        await axios({
+            url: 'http://localhost:8080/api/item',
+            method:'put',
+            data: item,
+        });
     }
 
     async delete(id:number) {
-        await axios.delete('http://localhost:8000/todo/'+id);
+        await axios({
+            url: 'http://localhost:8080/api/item',
+            method:'delete',
+            data: {id: id},
+        });
     }
 }
 
