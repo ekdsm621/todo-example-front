@@ -19,6 +19,7 @@ export class Store {
 
     id:number = 0;
 
+    // FIXME: makeAutoObservable 의 의미와 runInAction 의 의미를 다시 한번 비교해보면 좋을 것 같아요.
     createListItem = (data:TodoType) => {
         const list = [...this.list];
         list.push(data);
