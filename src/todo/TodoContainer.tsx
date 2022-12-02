@@ -13,18 +13,19 @@ const TodoContainer = () => {
 
     useEffect(() => {
         api.getList().then(res => {
-            store.changeList(res.data);
-            store.initId(res.data.at(-1).id);
+            if(res.length === 0) return;
+            store.changeList(res);
+            store.initId(res.at(-1)!.id);
         });
     },[])
 
-    const handleClickDelete = useCallback((id:number) => {
-        api.delete(id).then(() => store.deleteListItem(id));
+    const handleClickDelete = useCallback((item:TodoType) => {
+        api.delete(item).then(() => store.deleteListItem(item.id));
     }, []);
 
     const handleClickComplete = useCallback((item:TodoType) => {
         item.completed = true;
-        api.complete(item).then(() => store.completeListItem(item.id));
+        api.update(item).then(() => store.completeListItem(item.id));
     },[]);
 
     const handleAddData = useCallback((title:string, date:string) => {

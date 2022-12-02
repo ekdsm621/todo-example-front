@@ -1,13 +1,13 @@
 import {Grid, IconButton, List, ListItem, ListItemText} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import CheckIcon from '@mui/icons-material/Check';
-import {TodoType} from "./TodoType";
+import {TodoType} from "../api/TodoType";
 import {useMemo} from "react";
 import {observer} from "mobx-react";
 
 interface Props{
     list: TodoType[];
-    handleClickDelete:(id:number) => void;
+    handleClickDelete:(item:TodoType) => void;
     handleClickComplete:(item:TodoType) => void;
 }
 
@@ -29,7 +29,7 @@ const TodoList = ({ list, handleClickDelete, handleClickComplete }:Props) => {
                                 <IconButton
                                     aria-label="delete"
                                     size="large"
-                                    onClick={() => handleClickDelete(item.id)}
+                                    onClick={() => handleClickDelete(item)}
                                 >
                                     <DeleteIcon />
                                 </IconButton>
