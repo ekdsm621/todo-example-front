@@ -15,7 +15,7 @@ class Api {
     private axios;
 
     constructor() {
-        const base = import.meta.env.VITE_BACK_BASE_URL;
+        const base = import.meta.env.VITE_BACK_BASE_URL + '/todo';
         this.axios = axios.create({
             baseURL: base,
         });
