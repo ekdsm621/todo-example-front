@@ -3,7 +3,6 @@ RUN mkdir /app
 WORKDIR /app
 RUN mkdir ./dist
 ADD ./dist ./dist
-RUN rm /etc/nginx/conf.d/default.conf
-COPY ./default.conf /etc/nginx/default.conf
-EXPOSE 3000
+RUN rm -f /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/nginx.conf
+COPY ./nginx.conf /etc/nginx
 CMD ["nginx", "-g", "daemon off;"]
